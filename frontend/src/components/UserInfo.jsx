@@ -1,17 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ExtrasInfoCard from "./ExtrasInfoCard";
 import { logout } from "../action";
-const dashboardLink =
-  "https://library-management-system-client.onrender.com/admin/dashboard";
 
 const UserInfo = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const extrasInfo = useSelector((state) => state.extras);
   const { user } = userInfo;
-  const book = [];
-  const cards = ["Book in Hand", "Rented History", "Requested Books"];
   const [visible, setVisible] = useState("");
 
   const handleVisibility = (value) => {
@@ -54,11 +52,12 @@ const UserInfo = () => {
       </div>
       <div className="flex flex-col justify-center items-start mt-5">
         {user?.isAdmin && (
-          <a className="w-[100%]" href={dashboardLink} target="_blank">
-            <button className="p-3 w-[100%] rounded-md bg-emerald-600 text-white font-semibold text-lg shadow-sm">
-              View Dashboard
-            </button>
-          </a>
+          <button
+            onClick={() => navigate("/admin/dashboard")}
+            className="p-3 w-[100%] rounded-md bg-emerald-600 text-white font-semibold text-lg shadow-sm"
+          >
+            View Dashboard
+          </button>
         )}
         <button
           onClick={handleLogout}
