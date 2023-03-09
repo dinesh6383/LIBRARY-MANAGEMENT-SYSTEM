@@ -26,7 +26,10 @@ const UserInfo = () => {
   };
 
   const handleDashboard = () => {
-    window.open("http://localhost:3000/admin/dashboard");
+    window.open(
+      `https://library-management-system-client.onrender.com/admin/dashboard`
+    );
+    window.document.title = "Admin Dashboard";
   };
 
   return (

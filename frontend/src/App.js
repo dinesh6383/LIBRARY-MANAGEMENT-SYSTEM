@@ -29,6 +29,7 @@ const App = () => {
       dispatch(setY());
     }
     getBooks();
+    document.title = "Uptime Library";
   }, []);
 
   return (
