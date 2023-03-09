@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ExtrasInfoCard from "./ExtrasInfoCard";
 import { logout } from "../action";
+const dashboardLink =
+  "https://library-management-system-client.onrender.com/admin/dashboard";
 
 const UserInfo = () => {
   const dispatch = useDispatch();
@@ -25,29 +27,12 @@ const UserInfo = () => {
     localStorage.removeItem("user");
   };
 
-  const handleDashboard = () => {
-    window.open(
-      `https://library-management-system-client.onrender.com/admin/dashboard`
-    );
-    window.document.title = "Admin Dashboard";
-  };
-
   return (
     <>
       <p className="text-lg text-gray-300 font-semibold bg-pink-800 py-2 px-2 rounded-md sm:w-[100%] sm:mt-5">
         Hello, <span className="text-white">{user?.username}</span>
       </p>
       <div className="flex justify-center items-start flex-col">
-        {/* {cards.map((val) => {
-          return (
-            <ExtrasInfoCard
-              card={val}
-              book={book}
-              handle={handleVisibility}
-              visible={visible}
-            />
-          );
-        })} */}
         <ExtrasInfoCard
           card={"Book in Hand"}
           book={extrasInfo?.bookInHand}
@@ -69,12 +54,11 @@ const UserInfo = () => {
       </div>
       <div className="flex flex-col justify-center items-start mt-5">
         {user?.isAdmin && (
-          <button
-            onClick={handleDashboard}
-            className="p-3 w-[100%] rounded-md bg-emerald-600 text-white font-semibold text-lg shadow-sm"
-          >
-            View Dashboard
-          </button>
+          <a className="w-[100%]" href={dashboardLink} target="_blank">
+            <button className="p-3 w-[100%] rounded-md bg-emerald-600 text-white font-semibold text-lg shadow-sm">
+              View Dashboard
+            </button>
+          </a>
         )}
         <button
           onClick={handleLogout}
