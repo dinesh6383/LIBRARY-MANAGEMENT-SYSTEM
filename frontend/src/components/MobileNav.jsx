@@ -26,7 +26,7 @@ const MobileNav = ({ status }) => {
   };
 
   return (
-    <div className="fixed md:flex justify-around items-center bottom-2 left-2 right-2 bg-gradient-to-br from-slate-900 to-slate-700 p-3 rounded-xl hidden">
+    <div className="fixed md:flex z-20 justify-around items-center bottom-2 left-2 right-2 bg-gradient-to-br from-slate-900 to-slate-700 p-3 rounded-xl hidden">
       {icons.map((icon, idx) => {
         return (
           <div
