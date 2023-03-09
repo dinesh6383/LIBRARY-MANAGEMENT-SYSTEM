@@ -47,7 +47,28 @@ The application should now be running at `http://localhost:3000`. You can access
 + Admin can CRUD user and books
 + Responsive design for mobile devices too..
 
-# Screenshots
+# Contributing
 
-![Home page](https://repository-images.githubusercontent.com/394226783/a0f99d83-8126-4822-99f3-0d839645889b)
+If you would like to contribute to this project, please follow these steps:
+
++ Fork this repository to your own Github account
++ Create a new branch and make your changes.
++ Test your changes thoroughly.
++ Submit a pull request to this repository with a detailed description of your changes.
+
+# Screenshots
++ HOME PAGE
+
+![Home page](https://github.com/dinesh6383/LIBRARY-MANAGEMENT-SYSTEM/blob/main/Homepage.png?raw=true
+)
+
++ SEARCH PAGE
+
+![Home page](https://github.com/dinesh6383/LIBRARY-MANAGEMENT-SYSTEM/blob/main/SearchPage.png?raw=true
+)
+
++ ADMIN PANEL
+
+![Home page](https://github.com/dinesh6383/LIBRARY-MANAGEMENT-SYSTEM/blob/main/Admin%20Page.png?raw=true
+)
 
