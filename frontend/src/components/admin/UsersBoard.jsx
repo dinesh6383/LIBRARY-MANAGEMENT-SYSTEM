@@ -52,16 +52,24 @@ const UsersBoard = () => {
     }));
   };
 
+  console.log(userData);
+
   const handleUserDel = async (user) => {
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/user/delete`,
-        {
-          id: user?._id,
-        }
+        `${process.env.REACT_APP_API_URL}/user/delete/${user?._id}`
       );
-      console.log(response);
-    } catch (err) {}
+
+      if (response.status === 200) {
+        setUserData((prev) => {
+          return prev.filter((val) => {
+            return val._id !== user._id;
+          });
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const commitUpdate = async (e) => {
