@@ -8,12 +8,12 @@ const className =
 const CreateBook = () => {
   const [message, setMessage] = useState("");
   const [newBook, setNewBook] = useState({
-    bookname: null,
-    authorname: null,
-    rating: null,
-    type: null,
-    bookImage: null,
-    price: null,
+    bookname: undefined,
+    authorname: undefined,
+    rating: undefined,
+    type: undefined,
+    bookImage: undefined,
+    price: undefined,
   });
 
   const handleChange = (type, value) => {

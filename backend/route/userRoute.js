@@ -2,6 +2,7 @@ import express from "express";
 import {
   addFavourites,
   deleteFavourites,
+  deleteUser,
   getBookInHand,
   getFavourites,
   getUser,
@@ -18,6 +19,7 @@ router.post("/login", loginRoute);
 router.get("/:id", getUser);
 router.get("/", getUsers);
 router.put("/edit", updateUser);
+router.delete("/delete", deleteUser);
 router.put("/addFav", addFavourites);
 router.get("/getfav/:id", getFavourites);
 router.put("/deletefav", deleteFavourites);

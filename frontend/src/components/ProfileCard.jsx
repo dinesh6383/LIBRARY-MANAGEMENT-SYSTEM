@@ -30,7 +30,7 @@ const ProfileCard = () => {
           ? "translateX(100%)"
           : "translateY(100%)",
       }}
-      className="ease-linear overflow-y-scroll pb-8 duration-200 fixed top-20 right-0 bottom-0 bg-slate-100 w-[300px] z-10 bg-gradient-to-br from-slate-300 to-slate-100 p-3 shadow-lg md:left-0 md:w-[100%] md:top-64 md:rounded-t-xl md:flex-col md:justify-center md:items-start md:pt-10 no-scrollbar"
+      className="ease-linear z-50 overflow-y-scroll pb-8 duration-200 fixed top-20 right-0 bottom-0 bg-slate-100 w-[300px] z-10 bg-gradient-to-br from-slate-300 to-slate-100 p-3 shadow-lg md:left-0 md:w-[100%] md:top-64 md:rounded-t-xl md:flex-col md:justify-center md:items-start md:pt-10 no-scrollbar"
     >
       <div
         onClick={closeToggle}

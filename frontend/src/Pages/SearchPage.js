@@ -21,7 +21,7 @@ const SearchPage = () => {
     "Lifestyle",
     "Technology",
     "Health and Fitness",
-    "Leadership and Entrepreneur",
+    "Leadership & Entrepreneurs",
     "Marketing and sales",
   ];
   const [topic, setTopic] = useState("");
@@ -29,6 +29,7 @@ const SearchPage = () => {
   const [choseTopic, setChoseTopic] = useState("");
 
   const handleSearch = (type, content) => {
+    console.log(content);
     let filteredData;
     if (type === "byInput") {
       if (topic) {

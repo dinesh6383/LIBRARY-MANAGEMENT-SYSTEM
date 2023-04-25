@@ -52,6 +52,10 @@ const UsersBoard = () => {
     }));
   };
 
+  const handleUserDel = (user) => {
+    console.log(user);
+  };
+
   const commitUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -63,7 +67,10 @@ const UsersBoard = () => {
           email: newInfo?.email,
         }
       );
-      console.log(response);
+      if (response?.status === 200) {
+        setModal((prev) => !prev);
+        console.log(response);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -72,59 +79,72 @@ const UsersBoard = () => {
   return (
     <div className="w-[95%] h-max overflow-x-scroll scrollbar">
       <table className="w-[100%] border-collapse ">
-        <tr className="bg-slate-800 text-white border-[1px] border-slate-200">
-          {data?.map((data) => {
+        <thead>
+          <tr className="bg-slate-800 text-white border-[1px] border-slate-200">
+            {data?.map((data, idx) => {
+              return (
+                <th
+                  key={idx}
+                  className="p-2 border-[0.5px] border-r-slate-400 min-w-fit whitespace-nowrap"
+                >
+                  {data}
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+
+        <tbody>
+          {userData?.map((data, idx) => {
             return (
-              <th className="p-2 border-[0.5px] border-r-slate-400 min-w-fit whitespace-nowrap">
-                {data}
-              </th>
+              <tr
+                key={idx}
+                className="bg-slate-500 text-white border-[1px] border-slate-200"
+              >
+                <td className="p-3 border-r-slate-400 w-[100%] whitespace-nowrap flex justify-center items-center text-3xl">
+                  {<FaRegUserCircle />}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.email}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.username}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.membership ? "Yes" : "No"}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.bookInHand?.length}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.rentedHistory?.length}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.favourites?.length}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.requestedBooks?.length}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  <button
+                    onClick={() => handleUpdate(data)}
+                    className="w-[100px] font-semibold bg-emerald-500 p-1 rounded-md shadow-md"
+                  >
+                    UPDATE
+                  </button>
+                </td>
+                <td className="p-3 text-center font-semibold border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  <button
+                    onClick={() => handleUserDel(data)}
+                    className="w-[100px] bg-red-500 p-1 rounded-md shadow-md"
+                  >
+                    DELETE
+                  </button>
+                </td>
+              </tr>
             );
           })}
-        </tr>
-
-        {userData?.map((data) => {
-          return (
-            <tr className="bg-slate-500 text-white border-[1px] border-slate-200">
-              <td className="p-3 border-r-slate-400 w-[100%] whitespace-nowrap flex justify-center items-center text-3xl">
-                {<FaRegUserCircle />}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.email}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.username}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.membership ? "Yes" : "No"}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.bookInHand?.length}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.rentedHistory?.length}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.favourites?.length}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.requestedBooks?.length}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                <button
-                  onClick={() => handleUpdate(data)}
-                  className="w-[100px] font-semibold bg-emerald-500 p-1 rounded-md shadow-md"
-                >
-                  UPDATE
-                </button>
-              </td>
-              <td className="p-3 text-center font-semibold border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                <button className="w-[100px] bg-red-500 p-1 rounded-md shadow-md">
-                  DELETE
-                </button>
-              </td>
-            </tr>
-          );
-        })}
+        </tbody>
       </table>
 
       {/* MODAL */}
@@ -196,8 +216,8 @@ const UsersBoard = () => {
               <label>Requested Books</label>
               <select className="w-[100%] mb-3 p-2 bg-slate-400 rounded-md">
                 {modalInfo?.requestedBooks?.length > 0 ? (
-                  modalInfo?.requestedBooks?.map((val) => {
-                    return <option>{val?.bookname}</option>;
+                  modalInfo?.requestedBooks?.map((val, idx) => {
+                    return <option key={idx}>{val?.bookname}</option>;
                   })
                 ) : (
                   <option>Empty!</option>

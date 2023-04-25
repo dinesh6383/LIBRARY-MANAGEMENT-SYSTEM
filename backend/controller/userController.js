@@ -107,13 +107,30 @@ export const getUsers = async (req, res, next) => {
 
 export const updateUser = async (req, res, next) => {
   try {
-    const editableUer = await User.findByIdAndUpdate(
-      { _id: req.body.id },
-      req.body
-    );
+    await User.findByIdAndUpdate({ _id: req.body.id }, req.body);
     res.status(200).json({
       message: "User updated sucessfully!",
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteUser = async (req, res, next) => {
+  try {
+    const delUser = await User.findById({ _id: req.body.id });
+
+    if (delUser) {
+      console.log(delUser);
+      await User.findByIdAndDelete({ _id: req.body.id });
+      res.status(200).json({
+        message: "User deleted successfully!",
+      });
+    } else {
+      res.status(401).json({
+        message: "User not found!",
+      });
+    }
   } catch (err) {
     next(err);
   }

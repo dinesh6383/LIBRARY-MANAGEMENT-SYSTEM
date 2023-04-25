@@ -12,8 +12,6 @@ const AdminPage = () => {
     setDimension(window.innerWidth);
   }, []);
 
-  console.log(dimension);
-
   return (
     <>
       <Header />

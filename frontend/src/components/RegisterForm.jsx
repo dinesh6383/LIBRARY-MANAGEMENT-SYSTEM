@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser, loginFailed, loginStart } from "../action";
 
 const RegisterForm = ({ changeForm }) => {
+  const registerDetails = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [details, setDetails] = useState({
     username: "",
@@ -29,6 +30,7 @@ const RegisterForm = ({ changeForm }) => {
       );
       dispatch(loginUser(detail?.data));
     } catch (err) {
+      console.log(err);
       dispatch(loginFailed(err?.response?.data));
     }
   };
@@ -42,6 +44,9 @@ const RegisterForm = ({ changeForm }) => {
   return (
     <div className="">
       <p className="font-bold text-xl md:text-center md:text-2xl">Register</p>
+      <p className="my-3 text-center text-sm font-semibold text-red-600 ease-in">
+        {registerDetails.error?.message}
+      </p>
       <form className="md:mt-5 md:text-center" onSubmit={handleSubmit}>
         <input
           onChange={(e) => handleChanges("username", e.target.value)}

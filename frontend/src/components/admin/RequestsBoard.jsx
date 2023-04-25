@@ -73,72 +73,75 @@ const RequestsBoard = () => {
   return (
     <div className="w-[95%] min-h-max max-h-[98%] overflow-x-scroll overflow-y-scroll scrollbar">
       <table className="w-[100%] border-collapse ">
-        <tr className="sticky bg-slate-800  top-0 left-0 right-0 border-[1px] border-slate-200 text-white">
-          {data?.map((data, idx) => {
+        <thead>
+          <tr className="sticky bg-slate-800  top-0 left-0 right-0 border-[1px] border-slate-200 text-white">
+            {data?.map((data, idx) => {
+              return (
+                <th
+                  key={idx}
+                  className="p-2 border-[0.5px] border-r-slate-400 min-w-fit whitespace-nowrap"
+                >
+                  {data}
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+
+        <tbody>
+          {reqData?.map((data, idx) => {
             return (
-              <th
+              <tr
+                style={{
+                  opacity: isFound(data?.userId, data?.bookId) ? "0.5" : "1",
+                }}
                 key={idx}
-                className="p-2 border-[0.5px] border-r-slate-400 min-w-fit whitespace-nowrap"
+                className="bg-slate-500 text-white border-[1px] border-slate-200"
               >
-                {data}
-              </th>
+                <td className="bg-fixed top-0  left-0 bottom- 0 bg-slate-900 p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {idx + 1}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.userId}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.bookId}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.bookname}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.authorname}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.genre}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.from_date}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.to_date}
+                </td>
+                <td className="p-3 text-center font-semibold border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  {data?.amount}
+                </td>
+                <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  <button
+                    onClick={() => handleRequest("accept", data)}
+                    className="w-[100px] font-semibold bg-emerald-500 p-1 rounded-md shadow-md"
+                  >
+                    ACCEPT
+                  </button>
+                </td>
+                <td className="p-3 text-center font-semibold border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
+                  <button className="w-[100px] bg-red-500 p-1 rounded-md shadow-md">
+                    DECLINE
+                  </button>
+                </td>
+              </tr>
             );
           })}
-        </tr>
-
-        {reqData?.map((data, idx) => {
-          return (
-            <tr
-              style={{
-                opacity: isFound(data?.userId, data?.bookId) ? "0.5" : "1",
-              }}
-              key={idx}
-              className="bg-slate-500 text-white border-[1px] border-slate-200"
-            >
-              <td className="bg-fixed top-0  left-0 bottom- 0 bg-slate-900 p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {idx + 1}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.userId}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.bookId}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.bookname}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.authorname}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.genre}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.from_date}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.to_date}
-              </td>
-              <td className="p-3 text-center font-semibold border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                {data?.amount}
-              </td>
-              <td className="p-3 text-center border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                <button
-                  onClick={() => handleRequest("accept", data)}
-                  className="w-[100px] font-semibold bg-emerald-500 p-1 rounded-md shadow-md"
-                >
-                  ACCEPT
-                </button>
-              </td>
-              <td className="p-3 text-center font-semibold border-[0.5px] border-r-slate-400 w-[100%] whitespace-nowrap ">
-                <button className="w-[100px] bg-red-500 p-1 rounded-md shadow-md">
-                  DECLINE
-                </button>
-              </td>
-            </tr>
-          );
-        })}
-        <tr></tr>
+        </tbody>
       </table>
     </div>
   );
