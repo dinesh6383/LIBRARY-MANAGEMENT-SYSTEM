@@ -52,8 +52,16 @@ const UsersBoard = () => {
     }));
   };
 
-  const handleUserDel = (user) => {
-    console.log(user);
+  const handleUserDel = async (user) => {
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/user/delete`,
+        {
+          id: user?._id,
+        }
+      );
+      console.log(response);
+    } catch (err) {}
   };
 
   const commitUpdate = async (e) => {
